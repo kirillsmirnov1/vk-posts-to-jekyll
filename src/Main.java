@@ -3,10 +3,13 @@ import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
+
+    private static final SimpleDateFormat inputDate = new SimpleDateFormat("dd.MM.yyyy");
+    private static final SimpleDateFormat outputDate = new SimpleDateFormat("yyyy-MM-dd");
+
     public static void main(String[] args) {
         String pathToFiles = "C:\\prog\\Java\\vk_posts_to_jekyll\\files";
         File[] files = new File(pathToFiles).listFiles();
@@ -37,8 +40,7 @@ public class Main {
         String date = null;
 
         try {
-            Date date1 = new SimpleDateFormat("dd.MM.yyyy").parse(rawDate);
-            date = new SimpleDateFormat("yyyy-MM-dd").format(date1)
+            date = outputDate.format(inputDate.parse(rawDate))
                     + " " + rawTime + ":00 +0300";
         } catch (ParseException e){
             e.printStackTrace();
