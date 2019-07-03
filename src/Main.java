@@ -34,11 +34,26 @@ public class Main {
 
         post.title = postLines.get(0);
 
-        // TODO выбрать фотки
+        parsePhotos(post, postLines);
         // TODO выбрать доки
         // TODO собрать пост для джекилла
 
         return null;
+    }
+
+    private static void parsePhotos(Post post, ArrayList<String> lines) {
+        ArrayList<String> linesToRemove = new ArrayList<>();
+
+        for(int i = 0; i < lines.size(); ++i){
+            if(lines.get(i).contains("[фотография]")){
+                post.images.add("![img](" + lines.get(i).split(" ")[1] + ")");
+                linesToRemove.add(lines.get(i));
+            }
+        }
+
+        for(String lineToRemove : linesToRemove){
+            lines.remove(lineToRemove);
+        }
     }
 
     private static String parseDate(String[] dateLine) {
