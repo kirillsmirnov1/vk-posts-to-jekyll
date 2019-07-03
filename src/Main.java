@@ -34,6 +34,10 @@ public class Main {
 
         post.title = postLines.get(0);
 
+        // TODO выбрать фотки
+        // TODO выбрать доки
+        // TODO собрать пост для джекилла
+
         return null;
     }
 
