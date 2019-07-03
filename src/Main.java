@@ -20,6 +20,7 @@ public class Main {
             ArrayList<String> postLines = readPost(file);
             if(postLines != null){
                 Post post = generatePostFromLines(postLines);
+                // TODO записать пост
             }
             // TODO переместить файл к обработанным
         }
