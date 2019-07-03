@@ -35,9 +35,35 @@ public class Main {
         post.title = postLines.get(0);
 
         parsePhotosAndFiles(post, postLines);
-        // TODO собрать пост для джекилла
 
-        return null;
+        post.content = combineContent(post, postLines);
+
+        return post;
+    }
+
+    private static ArrayList<String> combineContent(Post post, ArrayList<String> lines) {
+        ArrayList<String> content = new ArrayList<>();
+
+        content.add(lines.get(0));
+
+        if(lines.size() > 1) {
+            content.add(lines.get(1));
+        }
+
+        for(String img : post.images) {
+            content.add(img);
+        }
+        content.add("<!--excerpt-->");
+
+        for(int i = 2; i < lines.size(); ++i){
+            content.add(lines.get(i));
+        }
+
+        for(String file : post.files){
+            content.add(file);
+        }
+
+        return content;
     }
 
     private static void parsePhotosAndFiles(Post post, ArrayList<String> lines) {
