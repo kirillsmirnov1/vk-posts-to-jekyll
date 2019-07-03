@@ -30,6 +30,7 @@ public class Main {
         Post post = new Post();
 
         post.date = parseDate(postLines.get(0).split(" "));
+        postLines.remove(0);
 
         return null;
     }
