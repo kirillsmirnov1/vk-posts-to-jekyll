@@ -16,11 +16,19 @@ public class Main {
         for(File file : files){
             ArrayList<String> postLines = readPost(file);
             if(postLines != null){
-                // TODO обработка
+                Post post = generatePostFromLines(postLines);
             }
             // TODO переместить файл к обработанным
         }
 
+    }
+
+    private static Post generatePostFromLines(ArrayList<String> postLines) {
+        Post post = new Post();
+
+        post.date = parseDate(postLines.get(0).split(" "));
+
+        return null;
     }
 
     private static String parseDate(String[] dateLine) {
