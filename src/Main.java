@@ -34,20 +34,25 @@ public class Main {
 
         post.title = postLines.get(0);
 
-        parsePhotos(post, postLines);
-        // TODO выбрать доки
+        parsePhotosAndFiles(post, postLines);
         // TODO собрать пост для джекилла
 
         return null;
     }
 
-    private static void parsePhotos(Post post, ArrayList<String> lines) {
+    private static void parsePhotosAndFiles(Post post, ArrayList<String> lines) {
         ArrayList<String> linesToRemove = new ArrayList<>();
 
         for(int i = 0; i < lines.size(); ++i){
             if(lines.get(i).contains("[фотография]")){
                 post.images.add("![img](" + lines.get(i).split(" ")[1] + ")");
                 linesToRemove.add(lines.get(i));
+            } else if (lines.get(i).contains("[файл]")){
+                post.files.add("![" + lines.get(i).split(" ")[1] + "]("
+                        + lines.get(i+1).split("\\?")[0] + ")");
+                linesToRemove.add(lines.get(i));
+                linesToRemove.add(lines.get(i+1));
+                i++;
             }
         }
 
