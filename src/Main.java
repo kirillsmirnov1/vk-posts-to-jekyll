@@ -32,6 +32,8 @@ public class Main {
         post.date = parseDate(postLines.get(0).split(" "));
         postLines.remove(0);
 
+        post.title = postLines.get(0);
+
         return null;
     }
 
