@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -18,6 +21,22 @@ public class Main {
             // TODO переместить файл к обработанным
         }
 
+    }
+
+    private static String parseDate(String[] dateLine) {
+        String rawDate = dateLine[78];
+        String rawTime = dateLine[80];
+        String date = null;
+
+        try {
+            Date date1 = new SimpleDateFormat("dd.MM.yyyy").parse(rawDate);
+            date = new SimpleDateFormat("yyyy-MM-dd").format(date1)
+                    + " " + rawTime + ":00 +0300";
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+
+        return date;
     }
 
     private static ArrayList<String> readPost(File post){
