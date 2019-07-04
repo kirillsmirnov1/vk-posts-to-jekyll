@@ -11,11 +11,17 @@ public class Main {
 
     private static final SimpleDateFormat inputDate = new SimpleDateFormat("dd.MM.yyyy");
     private static final SimpleDateFormat outputDate = new SimpleDateFormat("yyyy-MM-dd");
-    private static String pathToFiles = "C:\\prog\\Java\\vk_posts_to_jekyll\\files";
+
+    private static String pathToFiles;
+    private static String pathToProcessed;
+    private static String pathToOutput;
 
     private static final char[] ILLEGAL_CHARACTERS = { '/', '\n', '\r', '\t', '\0', '\f', '`', '?', '*', '\\', '<', '>', '|', '\"', ':' };
 
     public static void main(String[] args) {
+
+        fillPaths();
+
         File[] files = new File(pathToFiles).listFiles();
 
         // TODO создать папки для обработанных и необработанных файлов
@@ -29,6 +35,12 @@ public class Main {
             // TODO переместить файл к обработанным
         }
 
+    }
+
+    private static void fillPaths() {
+        pathToFiles = "C:\\prog\\Java\\vk_posts_to_jekyll\\files";
+        pathToProcessed = pathToFiles + "\\processed";
+        pathToOutput = pathToFiles + "\\output";
     }
 
     private static void writePostOut(Post post) {
