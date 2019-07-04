@@ -75,7 +75,7 @@ public class Main {
                 post.images.add("![img](" + lines.get(i).split(" ")[1] + ")");
                 linesToRemove.add(lines.get(i));
             } else if (lines.get(i).contains("[файл]")){
-                post.files.add("![" + lines.get(i).split(" ")[1] + "]("
+                post.files.add("[" + lines.get(i).split(" ")[1] + "]("
                         + lines.get(i+1).split("\\?")[0] + ")");
                 linesToRemove.add(lines.get(i));
                 linesToRemove.add(lines.get(i+1));
