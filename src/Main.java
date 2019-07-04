@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +40,18 @@ public class Main {
             // TODO переместить файл к обработанным
         }
 
+    }
+
+    private static void moveFileToProcessed(File file) {
+        try {
+            Files.move(
+                    file.toPath(),
+                    new File(pathToProcessed + file.getName()).toPath(),
+                    java.nio.file.StandardCopyOption.ATOMIC_MOVE,
+                    java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void fillPaths() {
