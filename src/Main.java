@@ -60,7 +60,7 @@ public class Main {
         pathToOutput = pathToFiles + "\\output\\";
     }
 
-    private static void writePostOut(Post post) {
+    private static boolean writePostOut(Post post) {
         String fileName = generateFileName(post);
         File file = new File(fileName);
 
@@ -86,11 +86,13 @@ public class Main {
                 fileWriter.flush();
             }
 
+            return true;
+
         } catch (IOException e) {
             System.out.println("Error in file: \n" + fileName + "\n");
             e.printStackTrace();
         }
-
+        return false;
     }
 
     private static String generateFileName(Post post) {
