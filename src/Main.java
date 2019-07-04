@@ -9,9 +9,9 @@ public class Main {
 
     private static final SimpleDateFormat inputDate = new SimpleDateFormat("dd.MM.yyyy");
     private static final SimpleDateFormat outputDate = new SimpleDateFormat("yyyy-MM-dd");
+    private static String pathToFiles = "C:\\prog\\Java\\vk_posts_to_jekyll\\files";
 
     public static void main(String[] args) {
-        String pathToFiles = "C:\\prog\\Java\\vk_posts_to_jekyll\\files";
         File[] files = new File(pathToFiles).listFiles();
 
         // TODO создать папки для обработанных и необработанных файлов
@@ -54,7 +54,7 @@ public class Main {
         for(String img : post.images) {
             content.add(img);
         }
-        
+
         content.add("<!--excerpt-->");
 
         for(int i = 2; i < lines.size(); ++i){
