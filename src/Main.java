@@ -183,8 +183,8 @@ public class Main {
     }
 
     private static String parseDate(String[] dateLine) {
-        String rawDate = dateLine[78];
-        String rawTime = dateLine[80];
+        String rawDate = dateLine[dateLine.length-3];
+        String rawTime = dateLine[dateLine.length-1];
         String date = null;
 
         try {
