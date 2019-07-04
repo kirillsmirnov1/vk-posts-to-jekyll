@@ -48,7 +48,10 @@ public class Main {
                 fileWriter.write("---\n");
 
                 for(String line : post.content){
-                    fileWriter.write(line + "\n\n");
+                    if(line.charAt(0) != '-') {
+                        fileWriter.write("\n");
+                    }
+                    fileWriter.write(line + "\n");
                 }
 
                 fileWriter.flush();
@@ -83,9 +86,20 @@ public class Main {
 
         parsePhotosAndFiles(post, postLines);
 
+        parseLists(postLines);
+
         post.content = combineContent(post, postLines);
 
         return post;
+    }
+
+    private static void parseLists(ArrayList<String> postLines) {
+        for(int i = 0; i < postLines.size(); ++i)
+        {
+            if(postLines.get(i).charAt(0) == '—' || postLines.get(i).charAt(0) == '•' ){
+                postLines.set(i, "-" + postLines.get(i).substring(1));
+            }
+        }
     }
 
     private static ArrayList<String> combineContent(Post post, ArrayList<String> lines) {
