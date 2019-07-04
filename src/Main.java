@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,9 +24,39 @@ public class Main {
             ArrayList<String> postLines = readPost(file);
             if(postLines != null){
                 Post post = generatePostFromLines(postLines);
-                // TODO записать пост
+                writePostOut(post);
             }
             // TODO переместить файл к обработанным
+        }
+
+    }
+
+    private static void writePostOut(Post post) {
+        String fileName = generateFileName(post);
+        File file = new File(fileName);
+
+        try {
+            file.createNewFile();
+
+            try (FileWriter fileWriter = new FileWriter(file)){
+
+                fileWriter.write("---\n");
+                fileWriter.write("layout: post\n");
+                fileWriter.write("title:  \"" + post.title + "\"\n");
+                fileWriter.write("date:   " + post.date + "\n");
+                fileWriter.write("tags:   \n");
+                fileWriter.write("---\n");
+
+                for(String line : post.content){
+                    fileWriter.write(line + "\n\n");
+                }
+
+                fileWriter.flush();
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error in file: \n" + fileName + "\n");
+            e.printStackTrace();
         }
 
     }
