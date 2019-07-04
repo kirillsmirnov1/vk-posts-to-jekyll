@@ -140,7 +140,9 @@ public class Main {
     private static ArrayList<String> combineContent(Post post, ArrayList<String> lines) {
         ArrayList<String> content = new ArrayList<>();
 
-        content.add(lines.get(0));
+        if(lines.size() > 0){
+            content.add(lines.get(0));
+        }
 
         if(lines.size() > 1) {
             content.add(lines.get(1));
