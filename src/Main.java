@@ -23,14 +23,17 @@ public class Main {
         fillPaths();
 
         File[] files = new File(pathToFiles).listFiles();
+
         new File(pathToProcessed).mkdir();
         new File(pathToOutput).mkdir();
 
         for(File file : files){
-            ArrayList<String> postLines = readPost(file);
-            if(postLines != null){
-                Post post = generatePostFromLines(postLines);
-                writePostOut(post);
+            if(file.isFile()) {
+                ArrayList<String> postLines = readPost(file);
+                if (postLines != null) {
+                    Post post = generatePostFromLines(postLines);
+                    writePostOut(post);
+                }
             }
             // TODO переместить файл к обработанным
         }
@@ -83,7 +86,7 @@ public class Main {
             fileName = fileName.replace(ch, '-');
         }
 
-        fileName = pathToFiles + "\\" + fileName;
+        fileName = pathToOutput + "\\" + fileName;
 
         return fileName;
     }
