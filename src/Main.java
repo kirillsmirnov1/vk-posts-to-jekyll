@@ -34,10 +34,13 @@ public class Main {
                 ArrayList<String> postLines = readPost(file);
                 if (postLines != null) {
                     Post post = generatePostFromLines(postLines);
-                    writePostOut(post);
+                    if(writePostOut(post)){
+                        moveFileToProcessed(file);
+                    }
+                } else {
+                    moveFileToProcessed(file);
                 }
             }
-            // TODO переместить файл к обработанным
         }
 
     }
