@@ -54,6 +54,7 @@ public class Main {
         for(String img : post.images) {
             content.add(img);
         }
+        
         content.add("<!--excerpt-->");
 
         for(int i = 2; i < lines.size(); ++i){
