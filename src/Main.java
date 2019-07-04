@@ -117,7 +117,7 @@ public class Main {
         post.date = parseDate(postLines.get(0).split(" "));
         postLines.remove(0);
 
-        post.title = postLines.get(0).substring(0, postLines.get(0).length() > titleLen ? titleLen : postLines.get(0).length()-1);
+        post.title = postLines.get(0).substring(0, (postLines.get(0).length() > titleLen ? titleLen : postLines.get(0).length()-1));
 
         parsePhotosAndFiles(post, postLines);
 
