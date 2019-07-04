@@ -42,8 +42,8 @@ public class Main {
 
     private static void fillPaths() {
         pathToFiles = "C:\\prog\\Java\\vk_posts_to_jekyll\\files";
-        pathToProcessed = pathToFiles + "\\processed";
-        pathToOutput = pathToFiles + "\\output";
+        pathToProcessed = pathToFiles + "\\processed\\";
+        pathToOutput = pathToFiles + "\\output\\";
     }
 
     private static void writePostOut(Post post) {
@@ -86,7 +86,7 @@ public class Main {
             fileName = fileName.replace(ch, '-');
         }
 
-        fileName = pathToOutput + "\\" + fileName;
+        fileName = pathToOutput + fileName;
 
         return fileName;
     }
