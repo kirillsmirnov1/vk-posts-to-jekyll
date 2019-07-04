@@ -11,6 +11,8 @@ public class Main {
     private static final SimpleDateFormat outputDate = new SimpleDateFormat("yyyy-MM-dd");
     private static String pathToFiles = "C:\\prog\\Java\\vk_posts_to_jekyll\\files";
 
+    private static final char[] ILLEGAL_CHARACTERS = { '/', '\n', '\r', '\t', '\0', '\f', '`', '?', '*', '\\', '<', '>', '|', '\"', ':' };
+
     public static void main(String[] args) {
         File[] files = new File(pathToFiles).listFiles();
 
@@ -25,6 +27,18 @@ public class Main {
             // TODO переместить файл к обработанным
         }
 
+    }
+
+    private static String generateFileName(Post post) {
+        String fileName = post.date.split(" ")[0] + "-" + post.title + ".md";
+
+        for(Character ch : ILLEGAL_CHARACTERS){
+            fileName = fileName.replace(ch, '-');
+        }
+
+        fileName = pathToFiles + "\\" + fileName;
+
+        return fileName;
     }
 
     private static Post generatePostFromLines(ArrayList<String> postLines) {
