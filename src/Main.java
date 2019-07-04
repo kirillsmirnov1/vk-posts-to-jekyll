@@ -17,6 +17,8 @@ public class Main {
     private static String pathToProcessed;
     private static String pathToOutput;
 
+    private static int titleLen = 20;
+
     private static final char[] ILLEGAL_CHARACTERS = { '/', '\n', '\r', '\t', '\0', '\f', '`', '?', '*', '\\', '<', '>', '|', '\"', ':' };
 
     public static void main(String[] args) {
@@ -115,7 +117,7 @@ public class Main {
         post.date = parseDate(postLines.get(0).split(" "));
         postLines.remove(0);
 
-        post.title = postLines.get(0);
+        post.title = postLines.get(0).substring(0, postLines.get(0).length() > titleLen ? titleLen : postLines.get(0).length()-1);
 
         parsePhotosAndFiles(post, postLines);
 
