@@ -23,8 +23,8 @@ public class Main {
         fillPaths();
 
         File[] files = new File(pathToFiles).listFiles();
-
-        // TODO создать папки для обработанных и необработанных файлов
+        new File(pathToProcessed).mkdir();
+        new File(pathToOutput).mkdir();
 
         for(File file : files){
             ArrayList<String> postLines = readPost(file);
